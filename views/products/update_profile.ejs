@@ -9,22 +9,24 @@
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
 </head>
-<body style="overflow: hidden;">
+<body>
     <%- include('../partials/header')  %>
     <%- include('../partials/admin-side-navbar') %>
 
    <div class="admin_content">
         <div class="form-content">
-            <form action="/admin/update" method="POST">
+            <form action="/admin/update" method="POST" enctype="multipart/form-data">
+                <label for="profile-pic">Profile Photo :</label><br>
+                <%- include('../partials/drag-drop') %>
                 <label for="fname">First name:</label><br>
                 <input type="text" id="fname" name="fname" value="<%= admin.name.split(" ")[0] %>"><br>
                 <label for="lname">Last name:</label><br>
                 <input type="text" id="lname" name="lname" value="<%= admin.name.split(" ")[1] %>"><br>
                 <label for="mobile_no">Mobile number: </label><br>
-                <input type="tel" id="mobile_no" name="mobile_no" value="<%= admin.mobile_no %>"><br>
+                <input type="number" id="mobile_no" name="mobile_no" value="<%= admin.mobile_no %>"><br>
                 <label for="email_id">Email id:</label><br>
                 <input type="email" id="email_id" name="email_id" value="<%= admin.email_id %>"><br><br>
-                <button type="submit">Update</button>
+                <button disabled  id="submit_update" type="submit">Update</button>
             </form>
         </div>
    </div>
@@ -33,8 +35,42 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 <script>
+    const fileElement = document.getElementById('drag-drop-inp');
+const sizeFile = document.getElementById('size');
+
+const formatFileSize = function (bytes) {
+    const sufixes = ['B', 'kB', 'MB', 'GB', 'TB'];
+    const i = Math.floor(Math.log(bytes) / Math.log(1024));
+    return `${(bytes / Math.pow(1024, i)).toFixed(2)} ${sufixes[i]}`;
+};
+
+fileElement.addEventListener('change', function(e) {
+    const files = e.target.files;
+    if (files.length == 0) {
+        sizeFile.innerHTML = '';
+        sizeFile.style.display = 'none';
+    }
+    else {
+        console.log(files[0].size);
+        if (files[0].size > 2000000) {
+            sizeFile.innerHTML = "File size exceed the limit (1 MB)"
+            document.getElementById('submit_update').disabled=true;
+        }
+        else {
+            sizeFile.innerHTML = `${formatFileSize(files[0].size)}`;
+            document.getElementById('submit_update').disabled=false;
+        } 
+        sizeFile.style.display = 'block';
+    }
+});
+
+
     const profile_button = document.querySelector("#update_link");
     profile_button.classList.add("active");
+    
+    const inp = document.querySelector('#drag-drop-inp');
+    inp.setAttribute('name', 'profile-pic');
   </script>
+  <script src="/js/drag-drop.js"></script>
 </body>
 </html>

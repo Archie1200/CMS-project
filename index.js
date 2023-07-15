@@ -4,6 +4,7 @@ var express = require('express'),
   const path = require('path');
   const ejs = require('ejs');
   const bodyParser = require("body-parser");
+  const fileUpload = require('express-fileupload');
 
 // use ejs-locals for all ejs templates:
 app.engine('ejs', engine);
@@ -11,8 +12,8 @@ app.use(express.static(__dirname + '/public'));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs'); // so you can render('index')
 app.use(bodyParser.urlencoded());
-
 app.use(bodyParser.json());
+app.use(fileUpload());
 
 const PORT = 3000;
 
@@ -27,7 +28,8 @@ const admin = {
     name : "Rishabh Tiwari",
     mobile_no : "+91 9354013292",
     created_on : "10 July 2023",
-    email_id : "rishabhworld9145@gmail.com"
+    email_id : "rishabhworld9145@gmail.com",
+    profile_pic : ""
 };
 
 app.get('/admin', (req, res) => {
@@ -47,11 +49,15 @@ app.get('/admin/manage', (req, res) => {
 
 app.post('/admin/update', (req, res) => {
     const updated_admin =(req.body);
+
+    console.log(JSON.stringify(updated_admin));
+    console.log(req.files);
+    // res.sendStatus(200);
     // let obj = JSON.parse(updated_admin)
     admin.name = updated_admin.fname + " "+ updated_admin.lname;
     admin.email_id = updated_admin.email_id;
     admin.mobile_no = updated_admin.mobile_no;
-    // console.log(updated_admin.email_id);
+    console.log(updated_admin.email_id);
     res.redirect('/admin');
 })
 
