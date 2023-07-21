@@ -6,6 +6,11 @@
     <title>Document</title>
     <link rel="stylesheet" type="text/css" href="/css/app.css ">
     <link rel="stylesheet" type="text/css" href="/css/form-css.css ">
+    <style>
+        .error {
+            color: red;
+        }
+    </style>
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
 </head>
@@ -15,18 +20,23 @@
 
    <div class="admin_content">
         <div class="form-content">
-            <form action="/admin/update" method="POST" enctype="multipart/form-data">
-                <label for="profile-pic">Profile Photo :</label><br>
+            <form action="/admin/update" method="POST" enctype="multipart/form-data" onsubmit="return checkform()">
+                <label for="profile_pic">Profile Photo :</label><br>
                 <%- include('../partials/drag-drop') %>
+                <div class="error"  id="profile_pic-error"></div><br>
                 <label for="fname">First name:</label><br>
                 <input type="text" id="fname" name="fname" value="<%= admin.name.split(" ")[0] %>"><br>
+                <div class="error"  id="fname-error"></div><br>
                 <label for="lname">Last name:</label><br>
                 <input type="text" id="lname" name="lname" value="<%= admin.name.split(" ")[1] %>"><br>
+                <div class="error"  id="lname-error"></div><br>
                 <label for="mobile_no">Mobile number: </label><br>
-                <input type="number" id="mobile_no" name="mobile_no" value="<%= admin.mobile_no %>"><br>
+                <input type="tel" id="mobile_no" name="mobile_no" value="<%= admin.mobile_no %>"><br>
+                <div class="error"  id="mobile_no-error"></div><br>
                 <label for="email_id">Email id:</label><br>
-                <input type="email" id="email_id" name="email_id" value="<%= admin.email_id %>"><br><br>
-                <button disabled  id="submit_update" type="submit">Update</button>
+                <input type="email" id="email_id" name="email_id" value="<%= admin.email_id %>"><br>
+                <div class="error"  id="email_id-error"></div><br><br>
+                <button id="submit_update" type="submit" >Update</button>
             </form>
         </div>
    </div>
@@ -35,41 +45,70 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 <script>
-    const fileElement = document.getElementById('drag-drop-inp');
-const sizeFile = document.getElementById('size');
-
-const formatFileSize = function (bytes) {
-    const sufixes = ['B', 'kB', 'MB', 'GB', 'TB'];
-    const i = Math.floor(Math.log(bytes) / Math.log(1024));
-    return `${(bytes / Math.pow(1024, i)).toFixed(2)} ${sufixes[i]}`;
-};
-
-fileElement.addEventListener('change', function(e) {
-    const files = e.target.files;
-    if (files.length == 0) {
-        sizeFile.innerHTML = '';
-        sizeFile.style.display = 'none';
-    }
-    else {
-        console.log(files[0].size);
-        if (files[0].size > 2000000) {
-            sizeFile.innerHTML = "File size exceed the limit (1 MB)"
-            document.getElementById('submit_update').disabled=true;
-        }
-        else {
-            sizeFile.innerHTML = `${formatFileSize(files[0].size)}`;
-            document.getElementById('submit_update').disabled=false;
-        } 
-        sizeFile.style.display = 'block';
-    }
-});
-
+    
 
     const profile_button = document.querySelector("#update_link");
     profile_button.classList.add("active");
     
     const inp = document.querySelector('#drag-drop-inp');
-    inp.setAttribute('name', 'profile-pic');
+    inp.setAttribute('name', 'profile_pic');
+
+
+    const fileElement = document.getElementById('drag-drop-inp');
+    fileElement.setAttribute('accept', 'image/*');
+    // fileElement.setAttribute('type', 'image');
+
+
+    function checkform() {
+        console.log("entered checkform");
+
+        document.getElementById('profile_pic-error').innerText = '';
+        document.getElementById('fname-error').innerText = "";
+        document.getElementById('lname-error').innerText = "";
+        document.getElementById('email_id-error').innerText = "";
+        document.getElementById('mobile_no-error').innerText = "";
+
+
+        var profile_pic = document.getElementById('drag-drop-inp');
+        var fname = document.getElementById('fname');
+        var lname = document.getElementById('lname');
+        var mobile_no = document.getElementById('mobile_no');
+        var email_id = document.getElementById('email_id');
+        let check = true;
+
+        let val = profile_pic.value;
+        
+        if (val.length == 0) {
+            document.getElementById('profile_pic-error').innerText = "**Please add a profile pic before submit";
+            check = false;
+        }
+        else if (!val.endsWith('.jpeg') && !val.endsWith('.png') && !val.endsWith('.jpg')) {
+            document.getElementById('profile_pic-error').innerText = "**File type is not image (.png, .jpg, etc.)";
+            check = false;
+        }
+        else if (profile_pic.files[0].size > 2000000) {
+            document.getElementById('profile_pic-error').innerText = "**Image size larger than 2MB limit!!";
+            check = false;
+        }
+        if (fname.value.length == 0) {
+            document.getElementById('fname-error').innerText = "**Fill your first name";
+            check = false;
+        }
+        if (lname.value.length == 0) {
+            document.getElementById('lname-error').innerText = "**Fill your Last name";
+            check = false;
+        }
+        if (email_id.value.length == 0) {
+            document.getElementById('email_id-error').innerText = "**Fill your email_id";
+            check = false;
+        }
+        if (mobile_no.value.length != 10) {
+            document.getElementById('mobile_no-error').innerText = "**Fill your Mobile number correctly";
+            check = false;
+        }
+        return check;
+    }
+    
   </script>
   <script src="/js/drag-drop.js"></script>
 </body>
