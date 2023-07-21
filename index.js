@@ -1,3 +1,8 @@
+// if(process.env.NODE_ENV != "production"){
+
+//   require("dotenv").config({ path: "./config.env"})
+// }
+
 var express = require('express'),
   engine = require('ejs-mate'),
   app = express();
@@ -7,6 +12,53 @@ var express = require('express'),
   const fileUpload = require('express-fileupload');
   const cloudinary = require('cloudinary').v2;
   const dotenv = require('dotenv');
+  const authRouter = require("./routes/authRoutes");
+  const flash = require("connect-flash");
+  const User = require("./models/User")
+  const passport = require("passport");
+  var LocalStrategy = require('passport-local');
+  const mongoose = require("mongoose");
+  const session = require("express-session")
+  const dbUrl = process.env.DB_URI
+
+
+//Connect to DB
+mongoose.connect("mongodb://127.0.0.1:27017/shopping-app", { useNewUrlParser: true,useUnifiedTopology: true })
+.then(()=> console.log(" DB CONNECTED!"))
+.catch((err)=> console.log(err));
+
+const sessionSecret = 'this is a secret session'
+
+const sessionflash = {
+  secret: sessionSecret,
+  resave: false,
+  saveUninitialized: true,
+  cookie: {
+
+    httpOnly:true,
+    expires: Date.now()  + 7 *24*60*60*1000
+  }
+};
+
+app.use(session(sessionflash))
+app.use(flash());
+app.use(passport.authenticate('session'));
+
+
+
+app.use((req, res, next) => {
+
+  res.locals.success = req.flash('success');
+  res.locals.error = req.flash('error');
+  res.locals.currentUser = req.user;
+  next();
+
+});
+
+
+
+
+
 
 
 
@@ -19,6 +71,12 @@ app.use(bodyParser.urlencoded());
 app.use(bodyParser.json());
 app.use(fileUpload({useTempFiles:true}));
 dotenv.config();
+//passport
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+
 
 console.log(process.env.API_KEY);
 console.log(process.env.API_SECRET);
@@ -36,7 +94,7 @@ const PORT = 3000;
 
 
 app.get('/', (req, res) => {
-    res.render(__dirname + '/views/products/index.ejs');
+    res.render("index");
 });
 
 
@@ -94,6 +152,11 @@ app.post('/admin/update', (req, res) => {
     // console.log(updated_admin.email_id);
     res.redirect('/admin');
 })
+
+//Routers
+
+app.use(authRouter);
+
 
 app.listen(PORT, (err) => {
     if (err) console.log("Error in server setup")
