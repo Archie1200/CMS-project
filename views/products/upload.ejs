@@ -16,6 +16,7 @@
     <div class="admin_content">
             <%- include('../partials/drag-drop') %><br>
             <button type="button" class="btn btn-primary btn-sm " id="imageButton">Upload Images</button>
+            <%- include('../partials/drag-drop') %><br>
             <button type="button" class="btn btn-success btn-sm" id="videoButton">Upload Videos</button>
     </div>
 
@@ -28,6 +29,11 @@
 <script>
     const profile_button = document.querySelector("#upload_link");
     profile_button.classList.add("active");
+
+    const fileElement = document.getElementById('drag-drop-inp');
+
+    
+    
   </script>
 </body>
 </html>
