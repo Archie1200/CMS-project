@@ -1,0 +1,53 @@
+/* Styles for the blog container and posts */
+#blog-container {
+    margin: 20px;
+  }
+  
+  .blog-post {
+    background-color: #eed9d9;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 40px;
+  }
+  
+  .blog-post h2 {
+    margin-top: 0;
+  }
+  
+  /* Styles for the input elements and buttons */
+  input[type="text"],
+  textarea {
+    display: block;
+    width: 80%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-top: 15px;
+  }
+  
+  button{
+    padding: 8px 16px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 5px;
+  }
+  
+  button:hover {
+    background-color: #45a049;
+  }
+  
+  button:active {
+    background-color: #3e8e41;
+  }
+  
+  /* Additional styles for the container holding input elements and buttons */
+  .input-container {
+    margin-bottom: 100px;
+    border: #ccc;
+    margin-left: 210px;
+  }
+  
