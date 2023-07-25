@@ -19,7 +19,7 @@ const { v4: uuidv4 } = require("uuid");
 
 //Connect to DB
 mongoose
-  .connect("mongodb://127.0.0.1:27017/shopping-app", {
+  .connect("mongodb://127.0.0.1:27017/blogging-app", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
@@ -58,6 +58,8 @@ app.use(bodyParser.urlencoded());
 app.use(bodyParser.json());
 app.use(fileUpload({ useTempFiles: true }));
 dotenv.config();
+
+
 //passport
 passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
@@ -81,6 +83,7 @@ app.get("/", (req, res) => {
 });
 
 var { Admin, Image } = require("./models/Admin");
+
 
 const admin = {
   id: "#rishabh-441",
