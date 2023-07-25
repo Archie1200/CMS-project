@@ -34,9 +34,20 @@ body {
     margin-top: 55px !important;
     margin-left: 200px;
     padding: 1px 16px;
-    height: 1000px;
+    height: 100%;
   }
-  
+  .box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  .box1,.box2{
+     width: 50%;
+  }
+  .box button{
+    margin-top: 10px;
+  }
   @media screen and (max-width: 700px) {
     .sidebar {
       position: fixed;
@@ -128,3 +139,5 @@ body {
     background: rgba(0, 0, 0, 0.75);
     text-align: center;
 }
+
+
