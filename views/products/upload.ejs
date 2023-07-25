@@ -14,6 +14,7 @@
     <%- include('../partials/admin-side-navbar') %>
 
     <div class="admin_content">
+
            <div class="box">
             <div class="box1">
                 <%- include('../partials/drag-drop') %>
@@ -26,6 +27,7 @@
            </div>
             <button id="createBlogButton">Create Blog</button>
     <div id="blog-container"></div>
+
     </div>
 
 <script src="/js/script.js"></script>
@@ -35,6 +37,7 @@
 <script>
     const profile_button = document.querySelector("#upload_link");
     profile_button.classList.add("active");
+  const fileElement = document.getElementById('drag-drop-inp');
     const ImageButton= document.getElementById("imageButton");
     videoButton.addEventListener("click",(e)=>{
     console.log("hello")
@@ -44,6 +47,7 @@ const videoButton= document.getElementById("videoButton");
 videoButton.addEventListener("click",(e)=>{
     fileElement.setAttribute("accept",'video/*');
 })
+
   </script>
 </body>
 </html>
