@@ -11,19 +11,32 @@ router.get("/register", (req,res)=>{
     res.render("auth/signup")
 })
 
-router.post("/register",async(req,res)=>{
 
-    const {username,password,email}= req.body;
+router.post('/register', async(req, res) => {
+  const { username, password, email } = req.body;
+  User.findOne({ email })
+    .then((existingUser) => {
+      if (existingUser) {
+        // handle error (email already registered)
+        req.flash('error', 'Email already registered');
+        res.redirect('/register');
+      } else {
+        const user = new User({ username, email });
+        user.created_on = new Date().toLocaleDateString();
+        return User.register(user, password);
+      }
+    })
+    .then((newUser) => {
+      console.log(newUser);
+      req.flash('success', 'You have Registered Successfully');
+      res.redirect('/login');
+    })
+    .catch((err) => {
+      req.flash('error', 'Some error occured while sign up, Please try again!');
+    });
+});
 
-        const user = new User({username, email})
 
-      const newUser = await User.register(user, password);
-
-      req.flash("success", " You have Registered Sucessfully")
-
-    res.redirect("/login")
-
-})
 
 
 router.get("/login",(req,res)=>{
