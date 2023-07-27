@@ -51,7 +51,7 @@ app.use((req, res, next) => {
 
 // use ejs-locals for all ejs templates:
 app.engine("ejs", engine);
-app.use(express.static(__dirname + "/public"));
+app.use(express.static(path.join(__dirname, 'public')));
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs"); // so you can render('index')
 app.use(bodyParser.urlencoded());
@@ -80,17 +80,6 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
-// var { Admin, Image } = require("./models/Admin");
-
-
-const admin = {
-  id: "#rishabh-441",
-  name: "Rishabh Tiwari",
-  mobile_no: "9354013292",
-  created_on: "10 July 2023",
-  email_id: "rishabhworld9145@gmail.com",
-  profile_pic: "",
-};
 
 app.get("/admin", (req, res) => {
   const user = req.user;
@@ -130,7 +119,6 @@ app.post("/admin/update", (req, res) => {
       console.log(result);
 
       try {
-        // Await for the image to be saved
         const user = req.user;
         user.fullname.firstname = updated_admin.fname;
         user.fullname.lastname = updated_admin.lname;
@@ -146,6 +134,22 @@ app.post("/admin/update", (req, res) => {
   );
   res.redirect("/admin");
 });
+
+
+//change password route
+app.post("/admin/changePassword", (req, res) => {
+  const user = req.user;
+  const oldPassword = req.body.oldPassword;
+  const newPassword = req.body.newPassword;
+  user.changePassword(req.body.oldPassword, req.body.newPassword, function(err) {
+    if (err) {
+      console.log(err);
+    } else {
+      user.save();
+    }
+  });
+  res.send("changed Password!!");
+})
 
 //Routers
 app.use(authRouter);

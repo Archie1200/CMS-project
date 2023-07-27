@@ -10,7 +10,7 @@ var userSchema = new mongoose.Schema({
         lastname : {type: String, default : ""},
         middlename: {type: String, default : ""},
     },
-    profilePictureUrl: {type: String, default: "https://0.soompi.io/wp-content/uploads/2020/11/02225523/lee-tae-ri.jpg"},
+    profilePictureUrl: {type: String, default: "https://i.stack.imgur.com/l60Hf.png"},
     mobile_no: {type: String, default: "not updated!"},
     created_on : {
         type : String,
