@@ -68,3 +68,14 @@ function updateThumbnail(dropZoneElement, file) {
         thumbnailEmement.style.backgroundImage = null;
     }
 }
+const img_button = document.getElementById('imageButton');
+img_button.addEventListener('click', (e) => {
+  console.log("updated the button to accept images");
+  fileElement.setAttribute('accept', 'image/*');  
+});
+
+const video_button = document.getElementById('videoButton');
+    video_button.addEventListener('click', (e) => {
+        console.log("updated the button to accept videos");
+        fileElement.setAttribute('accept', 'video/*');  
+    });
