@@ -122,4 +122,4 @@ const titleInput = document.getElementById('titleInput');
           window.alert('Video size should be less than 5MB.');
         }
       }
-    });
+});
