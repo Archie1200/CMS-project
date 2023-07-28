@@ -56,9 +56,5 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-// const img_button = document.getElementById('imageButton');
-// img_button.addEventListener('click', (e) => {
-//   console.log("updated the button to accept images");
-//   fileElement.setAttribute('accept', 'image/*');  
-// });
+
     

@@ -41,6 +41,23 @@ document.addEventListener('DOMContentLoaded', function () {
       fileInput.click();
     });
 
+// <<<<<<< new-branch
+// //     // Handle the upload button click
+// //     videoButton.addEventListener('click', () => {
+// //       if (selectedVideo) {
+// //         // Implement your video upload logic here, using the selectedVideo File object.
+// //         // You can use AJAX, fetch API, or any other method to upload the video to your server.
+// //         console.log('Uploading video: ', selectedVideo);
+// //         // Reset the selection after upload (optional)
+// //         selectedVideo = null;
+// //         dropArea.innerText = 'Drag &amp; Drop video here or click to select';
+// //       } else {
+// //         alert('Please select a video before clicking the "Upload" button.');
+// //       }
+// //     });
+// //   });
+
+// =======
     // Handle the upload button click
     videoButton.addEventListener('click', () => {
       if (selectedVideo) {
@@ -60,4 +77,5 @@ document.addEventListener('DOMContentLoaded', function () {
 //         console.log("updated the button to accept videos");
 //         fileElement.setAttribute('accept', 'video/*');  
 //     });
+// >>>>>>> main
     
