@@ -51,7 +51,7 @@ app.use((req, res, next) => {
 
 // use ejs-locals for all ejs templates:
 app.engine("ejs", engine);
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, "public")));
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs"); // so you can render('index')
 app.use(bodyParser.urlencoded());
@@ -59,12 +59,10 @@ app.use(bodyParser.json());
 app.use(fileUpload({ useTempFiles: true }));
 dotenv.config();
 
-
 //passport
 passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
-
 
 //cloudinary setup configurations
 cloudinary.config({
@@ -79,7 +77,6 @@ PORT = 3000;
 app.get("/", (req, res) => {
   res.render("index");
 });
-
 
 app.get("/admin", (req, res) => {
   const user = req.user;
@@ -137,23 +134,33 @@ app.post("/admin/update", (req, res) => {
 
 
 //change password route
-app.post("/admin/changePassword", (req, res) => {
+app.post("/admin/changePassword", async (req, res) => {
   const user = req.user;
-  const oldPassword = req.body.oldPassword;
+  console.log(req.body);
+  const oldPassword = await req.body.oldPassword;
   const newPassword = req.body.newPassword;
-  user.changePassword(req.body.oldPassword, req.body.newPassword, function(err) {
-    if (err) {
-      console.log(err);
-    } else {
-      user.save();
-    }
-  });
-  res.send("changed Password!!");
-})
+
+  if (req.user && await req.user.changePassword) {
+    req.user.changePassword(oldPassword, newPassword, function (err) {
+      if (err) {
+        req.flash("error", "Please input correct credentials!!");
+        res.redirect('/admin/managePassword');
+      } else {
+        user.save();
+        console.log("Password is updated!!!");
+        req.flash('success', "Password is updated ✅");
+        res.redirect('/admin/managePassword');
+      }
+    });
+  }
+  else {
+    req.flash('error', "some error occured!!");
+    res.redirect('/admin/managePassword');
+  }
+});
 
 //Routers
 app.use(authRouter);
-
 
 app.listen(PORT, (err) => {
   if (err) console.log("Error in server setup");
