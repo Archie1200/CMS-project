@@ -13,16 +13,17 @@
       <%- include('../partials/admin-side-navbar') %>
       <!-- Page content -->
       <div class="admin_content">
-        <h1>Welcome <%= admin.name %></h1>
+        <h1>Welcome <%= user.username %></h1>
         <div class="profile_content">
-          <div class="profile_img"><img src="<%= admin.profile_pic %>" alt="Profile img"></div>
+          <div class="profile_img"><img src="<%= user.profilePictureUrl %>" alt="Profile img"></div>
           <div class="profile_details">
             <ul style="list-style-type: none;">
-              <li>Name : <%= admin.name %></li>
-              <li>CMS id : <%= admin.id %></li>
-              <li>Mobile no. : <%= admin.mobile_no %></li>
-              <li>Email id : <%= admin.email_id %></li>
-              <li>Last Upadated on : <%= admin.created_on %></li>
+              <li>Username : @<%= user.username %></li>
+              <li>Author : <%= user.fullname.firstname + " " + user.fullname.lastname %> </li>
+              <li>CMS id : <%= user.id %></li>
+              <li>Mobile no. : <%= user.mobile_no %></li>
+              <li>Email id : <%= user.email %></li>
+              <li>Last Upadated on : <%= user.created_on %></li>
             </ul>
           </div>
         </div>

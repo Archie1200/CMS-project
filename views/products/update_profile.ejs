@@ -25,17 +25,17 @@
                 <%- include('../partials/drag-drop') %>
                 <div class="error"  id="profile_pic-error"></div><br>
                 <label for="fname">First name:</label><br>
-                <input type="text" id="fname" name="fname" value="<%= admin.name.split(" ")[0] %>"><br>
+                <input type="text" id="fname" name="fname" value="<%= user.fullname.firstname %>"><br>
                 <div class="error"  id="fname-error"></div><br>
                 <label for="lname">Last name:</label><br>
-                <input type="text" id="lname" name="lname" value="<%= admin.name.split(" ")[1] %>"><br>
+                <input type="text" id="lname" name="lname" value="<%= user.fullname.lastname %>"><br>
                 <div class="error"  id="lname-error"></div><br>
                 <label for="mobile_no">Mobile number: </label><br>
-                <input type="tel" id="mobile_no" name="mobile_no" value="<%= admin.mobile_no %>"><br>
+                <input type="tel" id="mobile_no" name="mobile_no" value="<%= user.mobile_no %>"><br>
                 <div class="error"  id="mobile_no-error"></div><br>
-                <label for="email_id">Email id:</label><br>
-                <input type="email" id="email_id" name="email_id" value="<%= admin.email_id %>"><br>
-                <div class="error"  id="email_id-error"></div><br><br>
+                <label for="email">Email id:</label><br>
+                <input type="email" id="email" name="email" value="<%= user.email %>"><br>
+                <div class="error"  id="email-error"></div><br><br>
                 <button id="submit_update" type="submit" >Update</button>
             </form>
         </div>
@@ -44,12 +44,10 @@
 
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+<!-- <script src="../../public/js/update_profile.js"></script> -->
 <script>
-    
-
     const profile_button = document.querySelector("#update_link");
     profile_button.classList.add("active");
-    
     const inp = document.querySelector('#drag-drop-inp');
     inp.setAttribute('name', 'profile_pic');
 
@@ -59,57 +57,55 @@
     // fileElement.setAttribute('type', 'image');
 
 
-    function checkform() {
-        console.log("entered checkform");
+function checkform() {
 
-        document.getElementById('profile_pic-error').innerText = '';
-        document.getElementById('fname-error').innerText = "";
-        document.getElementById('lname-error').innerText = "";
-        document.getElementById('email_id-error').innerText = "";
-        document.getElementById('mobile_no-error').innerText = "";
+    document.getElementById('profile_pic-error').innerText = '';
+    document.getElementById('fname-error').innerText = "";
+    document.getElementById('lname-error').innerText = "";
+    document.getElementById('email-error').innerText = "";
+    document.getElementById('mobile_no-error').innerText = "";
 
 
-        var profile_pic = document.getElementById('drag-drop-inp');
-        var fname = document.getElementById('fname');
-        var lname = document.getElementById('lname');
-        var mobile_no = document.getElementById('mobile_no');
-        var email_id = document.getElementById('email_id');
-        let check = true;
+    var profile_pic = document.getElementById('drag-drop-inp');
+    var fname = document.getElementById('fname');
+    var lname = document.getElementById('lname');
+    var mobile_no = document.getElementById('mobile_no');
+    var email_id = document.getElementById('email');
+    let check = true;
 
-        let val = profile_pic.value;
-        
-        if (val.length == 0) {
-            document.getElementById('profile_pic-error').innerText = "**Please add a profile pic before submit";
-            check = false;
-        }
-        else if (!val.endsWith('.jpeg') && !val.endsWith('.png') && !val.endsWith('.jpg')) {
-            document.getElementById('profile_pic-error').innerText = "**File type is not image (.png, .jpg, etc.)";
-            check = false;
-        }
-        else if (profile_pic.files[0].size > 2000000) {
-            document.getElementById('profile_pic-error').innerText = "**Image size larger than 2MB limit!!";
-            check = false;
-        }
-        if (fname.value.length == 0) {
-            document.getElementById('fname-error').innerText = "**Fill your first name";
-            check = false;
-        }
-        if (lname.value.length == 0) {
-            document.getElementById('lname-error').innerText = "**Fill your Last name";
-            check = false;
-        }
-        if (email_id.value.length == 0) {
-            document.getElementById('email_id-error').innerText = "**Fill your email_id";
-            check = false;
-        }
-        if (mobile_no.value.length != 10) {
-            document.getElementById('mobile_no-error').innerText = "**Fill your Mobile number correctly";
-            check = false;
-        }
-        return check;
-    }
+    let val = profile_pic.value;
     
-  </script>
+    if (val.length == 0) {
+        document.getElementById('profile_pic-error').innerText = "**Please add a profile pic before submit";
+        check = false;
+    }
+    else if (!val.endsWith('.jpeg') && !val.endsWith('.png') && !val.endsWith('.jpg')) {
+        document.getElementById('profile_pic-error').innerText = "**File type is not image (.png, .jpg, etc.)";
+        check = false;
+    }
+    else if (profile_pic.files[0].size > 2000000) {
+        document.getElementById('profile_pic-error').innerText = "**Image size larger than 2MB limit!!";
+        check = false;
+    }
+    if (fname.value.length == 0) {
+        document.getElementById('fname-error').innerText = "**Fill your first name";
+        check = false;
+    }
+    if (lname.value.length == 0) {
+        document.getElementById('lname-error').innerText = "**Fill your Last name";
+        check = false;
+    }
+    if (email_id.value.length == 0) {
+        document.getElementById('email-error').innerText = "**Fill your email_id";
+        check = false;
+    }
+    if (mobile_no.value.length != 10) {
+        document.getElementById('mobile_no-error').innerText = "**Fill your Mobile number correctly";
+        check = false;
+    }
+    return check;
+}
+</script>
   <script src="/js/drag-drop.js"></script>
 </body>
 </html>
