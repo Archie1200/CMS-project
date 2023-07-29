@@ -159,6 +159,13 @@ app.post("/admin/changePassword", async (req, res) => {
   }
 });
 
+
+//upload blog routes
+app.post('/admin/upload', (req, res) => {
+  console.log(req.body);
+  res.send("uploaded!!");
+})
+
 //Routers
 app.use(authRouter);
 

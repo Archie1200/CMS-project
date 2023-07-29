@@ -2,7 +2,10 @@ body {
     margin: 0;
     font-family: "Lato", sans-serif;
   }
-  
+  #logo {
+    width: 40px;
+    border-radius: 100%;
+  }
   .sidebar {
     margin: 0;
     padding: 0;

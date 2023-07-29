@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function () {
         dropArea.innerText = 'Invalid file format. Please select a video file.';
       }
     });
-
+     
     // Handle clicking on the drop area to select a file
     dropArea.addEventListener('click', () => {
       const fileInput = document.createElement('input');

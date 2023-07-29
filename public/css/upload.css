@@ -1,7 +1,5 @@
-
-
 .container {
-  max-width: 1000px;
+  width: 80%;
   background-color: #d3f1d3;
   border-radius: 10px;
   padding: 20px;
@@ -9,8 +7,17 @@
   margin: 20px;
 }
 
+#titleInput {
+  width: 70%;
+  margin: 0 0 20px 0;
+}
+
 h1, h2, p {
   margin: 10px 0;
+}
+
+.error {
+  color: red;
 }
 
 input[type="text"],
@@ -51,4 +58,39 @@ button:hover {
   padding: 10px;
   margin-top: 20px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.deleteBox {
+  border: 4px solid #a5001e;
+    background-color: #a5001e;
+    color: white;
+    border-radius: 10px;
+    padding: 5px;
+}
+.box1 label, .box2 label {
+  border: 2px solid none;
+  background-color: rgb(104, 104, 235);
+  color: white;
+  padding: 5px 5px 5px 10px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  border-radius: 0 10px 10px 0;
+}
+
+.deleteBox:hover {
+  background-color: #ff0000;
+  border-color: #ff0000;
+  scale: 1.05;
+  transition: 0.1s;
+  color: white;
+}
+
+#errorBox {
+  background-color: red;
+  margin: 5px 0 5px 0;
+  border: 2px solid red;
+  border-radius: 10px;
+  padding: 5px;
+  color: white;
+  width: fit-content;
 }
