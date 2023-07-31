@@ -69,4 +69,9 @@ router.get('/logout', function(req, res, next) {
     });
   });
 
+
+router.get('/blogs', function(req, res, next) {
+  res.render('products/blogs.ejs');
+});
+
 module.exports=router;

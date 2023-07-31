@@ -14,7 +14,9 @@
     <%- include('../partials/admin-side-navbar') %>
 
     <div class="admin_content">
-        <form action="/admin/upload" method="POST" enctype="multipart/form-data" onsubmit="return checkform()">
+        <%- include("../partials/flash")  %> 
+
+        <form id="uploadForm" action="/admin/upload" method="POST" enctype="multipart/form-data" onsubmit="return checkform()">
            <div class="box">
             <div class="box1">
                 <label for="image-upload">Upload image</label>
@@ -33,6 +35,10 @@
            <label for="title"><h3>Title</h3></label><br>
             <input type="text" id="titleInput" name="title" placeholder="Title of the blog">
             <div id="title-error" class="error"></div>
+
+            <label for="desc">Description</label><br>
+            <input type="text" name="desc" id="desc" placeholder="Add description for the blog" style="width: 70%; margin-bottom: 10px;">
+
 
            <div id="bigContainer">
             <div class="container">

@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const passportLocalMongoose = require('passport-local-mongoose');
+const Blog = require('./Blog');
 
 
 var userSchema = new mongoose.Schema({   
@@ -15,6 +16,10 @@ var userSchema = new mongoose.Schema({
     created_on : {
         type : String,
         default : ""
+    },
+    blogContent: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Blog'
     }
 });
 

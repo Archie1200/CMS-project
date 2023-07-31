@@ -145,6 +145,9 @@ function checkform() {
     }
     if (checkHead()) check = false;
     if (checkPara()) check = false;
+    if (check) {
+        document.getElementById('uploadForm').style.display = "none";
+    }
 
     return check;
     
