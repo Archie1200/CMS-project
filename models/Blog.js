@@ -8,6 +8,10 @@ const blogSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  description: {
+    type: String,
+    required: true
+  },
   headings: [{
     type: String,
     required: true
@@ -18,11 +22,13 @@ const blogSchema = new mongoose.Schema({
   }],
   image: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Content'
+    ref: 'Content',
+    default: null
   },
   video: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Content'
+    ref: 'Content',
+    default: null
   },
   author: {
     type: mongoose.Schema.Types.ObjectId,

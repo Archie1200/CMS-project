@@ -9,6 +9,7 @@ const cloudinary = require("cloudinary").v2;
 const dotenv = require("dotenv");
 const authRouter = require("./routes/authRoutes");
 const adminRouter = require('./routes/adminRoutes');
+const blogPageRouter = require('./routes/blogPageRoutes');
 const flash = require("connect-flash");
 const User = require("./models/User");
 const passport = require("passport");
@@ -81,6 +82,9 @@ app.get("/", (req, res) => {
 
 //admin routes
 app.use('/admin', adminRouter);
+
+//blog page routes 
+app.use('/blogs', blogPageRouter);
 
 //authentication routes
 app.use(authRouter);

@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const User = require("../models/Blog");
+const User = require("../models/User");
 const Content = require("../models/Content");
 const Blog = require("../models/Blog");
 const cloudinary = require("cloudinary").v2;
@@ -86,11 +86,14 @@ router.post("/changePassword", async (req, res) => {
 
 //upload blog routes
 router.post("/upload", async (req, res) => {
-  // console.log(req.body);
+  console.log(req.body);
   var blogImagePublicId = "";
   var blogVideoPublicId = "";
   var blogImageUrl = "";
   var blogVideoUrl = "";
+
+  var content1 = null;
+  var content2 = null;
 
   if (req.files != null && "blog-image" in req.files) {
     const blogImage = req.files["blog-image"];
@@ -98,10 +101,21 @@ router.post("/upload", async (req, res) => {
       blogImage.name = Date.now() + blogImage.name;
       await cloudinary.uploader
         .upload(blogImage.tempFilePath)
-        .then((result) => {
+        .then(async (result) => {
           console.log(result);
-          blogImagePublicId = result.public_id;
-          blogImageUrl = result.secure_url;
+          content1 = new Content({
+            public_id: result.public_id,
+            url: result.secure_url,
+          });
+        
+          await content1
+            .save()
+            .then(() => {
+              console.log("image saved!!");
+            })
+            .catch((err) => {
+              console.log("error occured in saving image!!");
+            });
         })
         .catch((err) => {
           req.flash("Error in uploading Image!");
@@ -110,6 +124,9 @@ router.post("/upload", async (req, res) => {
     }
   }
 
+  
+  
+
 
   if (req.files != null && "blog-video" in req.files) {
     const blogVideo = req.files["blog-video"];
@@ -117,10 +134,23 @@ router.post("/upload", async (req, res) => {
       blogVideo.name = Date.now() + blogVideo.name;
       await cloudinary.uploader
         .upload(blogVideo.tempFilePath, { resource_type: "video" })
-        .then((result) => {
+        .then(async (result) => {
           console.log(result.secure_url);
-          blogVideoPublicId = result.public_id;
-          blogVideoUrl = result.secure_url;
+
+          content2 = new Content({
+            public_id: result.public_id,
+            url: result.secure_url,
+          });
+        
+          await content2
+            .save()
+            .then(() => {
+              console.log("video saved!!");
+            })
+            .catch((err) => {
+              console.log("error occured in saving video!!");
+              console.log(err);
+            });
         })
         .catch((err) => {
           req.flash("Error in uploading video!");
@@ -129,40 +159,17 @@ router.post("/upload", async (req, res) => {
     }
   }
 
-  const content1 = new Content({
-    public_id: blogImagePublicId,
-    url: blogImageUrl,
-  });
+  var content1Id = content1 === null ? null : content1._id;
+  var content2Id = content2 === null ? null : content2._id;
 
-  await content1
-    .save()
-    .then(() => {
-      console.log("image saved!!");
-    })
-    .catch((err) => {
-      console.log("error occured in saving image!!");
-    });
-
-  const content2 = new Content({
-    public_id: blogVideoPublicId,
-    url: blogVideoUrl,
-  });
-
-  await content2
-    .save()
-    .then(() => {
-      console.log("video saved!!");
-    })
-    .catch((err) => {
-      console.log("error occured in saving video!!");
-    });
 
   const blog = new Blog({
     title: req.body.title,
+    description: req.body.desc,
     headings: req.body.headingInput,
     paragraphs: req.body.paragraphInput,
-    image: content1._id,
-    video: content2._id,
+    image: content1Id,
+    video: content2Id,
     author: req.user._id,
   });
 
@@ -174,7 +181,8 @@ router.post("/upload", async (req, res) => {
     })
     .catch((e) => {
       req.flash("error", "Something went wrong!, Upload Unsuccessful❌");
-      req.redirect("/admin/upload");
+      console.log(e);
+      res.redirect("/admin/upload");
     });
 });
 
