@@ -1,0 +1,35 @@
+<% layout('./layout/boilerplate') -%>
+<style>
+    .author {
+        display: flex;
+        align-items: center;
+    }
+
+    .author-details {
+        line-height: 0;
+    }
+</style>
+
+<div class="showBlog">
+    <div class="author">
+        <img style="width: 70px; border-radius: 100%;" src="<%= blog.author.profilePictureUrl %>" alt="">
+        <div class="author-details">
+            <span><h2><%= blog.author.fullname.firstname + " " + blog.author.fullname.lastname %></h2></span>
+            <br>
+            <span>@<%= blog.author.username %></span>
+        </div>
+    </div>
+
+    <div class="blogContent">
+        <h1><%= blog.title %></h1>
+        <h4>Description</h4>
+        <p><%= blog.description %></p>
+
+        <% for(var i = 0; i < blog.headings.length; i++) {%>
+            <h2><%= blog.headings[i] %></h2>
+            <p><%= blog.paragraphs[i] %></p>
+        <%} %>
+
+    </div>
+
+</div>

@@ -1,0 +1,13 @@
+.author-box img{
+    width: 25px;
+    height: 30px;
+    border-radius: 100%;
+    border: 1px solid lightblue;
+    margin: 20px;
+}
+
+.author-box {
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+}
