@@ -74,7 +74,7 @@ cloudinary.config({
   secure: true,
 });
 
-PORT = 3999;
+PORT = 3000;
 
 app.get("/", (req, res) => {
   res.render("products/index.ejs");
