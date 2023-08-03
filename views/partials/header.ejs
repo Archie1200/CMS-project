@@ -23,3 +23,12 @@
       </div>
     </div>
   </nav>
+
+  <script>
+    document.getElementById('logout-button').addEventListener('click', (e) => {
+      var bool = confirm("Do you want to Logout?");
+      if (!bool) {
+        e.preventDefault();
+      }
+    });
+  </script>

@@ -9,14 +9,14 @@ const cloudinary = require("cloudinary").v2;
 
 router.get('/', async (req, res, next) => {
     const blogs = await Blog.find().populate('image').populate('author').select("-headings -paragraphs -video");
-    console.log(blogs);
+    // console.log(blogs);
     res.render('products/blogs.ejs', {blogs : blogs});
 });
 
 router.get('/:id', async (req, res, next) => {
     const {id} = req.params;
     const blog = await Blog.findOne({_id: `${id}`}).populate('author').populate('image').populate('video');
-    console.log("blog printed");
+    // console.log("blog printed");
     // res.send(blog);
     res.render('products/showBlog.ejs', {blog: blog});
 })

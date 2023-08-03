@@ -99,3 +99,7 @@ button:hover {
   display: none;
   margin-top: 30vh;
 }
+
+.alert-danger {
+  color: red;
+}
