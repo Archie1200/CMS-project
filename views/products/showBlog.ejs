@@ -1,35 +1,123 @@
 <% layout('./layout/boilerplate') -%>
 <style>
+    @import url('https://fonts.googleapis.com/css2?family=Edu+SA+Beginner:wght@500&family=Kanit:ital@1&display=swap');
+    h1,h2,h3,h4 {
+        font-family: 'Kanit', sans-serif;
+    }
+
+    p {
+        font-family: 'Edu SA Beginner', cursive;
+    }
     .author {
+        padding: 30px;
         display: flex;
         align-items: center;
+        justify-content: space-between;
+
+        border-radius: 20px;
+        background-color: lightseagreen;
+        color: rgb(0, 24, 0);
     }
 
     .author-details {
         line-height: 0;
     }
+    #desc-head {
+        font-size: 20px;
+    }
+    #desc {
+        font-size: 15px;
+    }
+
+    .author img {
+        border-radius: 50%;
+        height: 3rem;
+        width: 3rem;
+        object-fit: cover;
+        border: 2px solid blueviolet;
+        margin-right: 20px;
+    }
+
+    #visual-content {
+        margin: 20px;
+        padding: 20px;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+    .content-img {
+        width: 25vw;
+        padding: 10px;
+        border: 2px solid gray;
+    }
+    .content-video {
+        width: 25vw;
+        padding: 10px;
+        border: 2px solid gray;
+    }
 </style>
 
 <div class="showBlog">
     <div class="author">
-        <img style="width: 70px; border-radius: 100%;" src="<%= blog.author.profilePictureUrl %>" alt="">
+        <div style="display: flex; justify-content: center; align-items: center;">
+            <img src="<%= blog.author.profilePictureUrl %>" alt="">
         <div class="author-details">
             <span><h2><%= blog.author.fullname.firstname + " " + blog.author.fullname.lastname %></h2></span>
             <br>
             <span>@<%= blog.author.username %></span>
         </div>
+        </div>
+        <div class="author-publish">
+            <span>Published on : <%= blog.published_on%></span>
+        </div>
     </div>
+    <hr>
 
     <div class="blogContent">
         <h1><%= blog.title %></h1>
-        <h4>Description</h4>
-        <p><%= blog.description %></p>
+        <h4 id="desc-head">Description</h4>
+        <p id="desc"><%= blog.description %></p>
 
+        <hr>
+
+
+        <% var visual = false; %>
         <% for(var i = 0; i < blog.headings.length; i++) {%>
+            <% if (i == 2) {%>
+                <div id="visual-content">
+                    <% if (blog.image != null && blog.image.url != null) {%>
+                    <img class="content-img" src=<%= blog.image.url %> alt="image">
+                    <% } %>
+                <% if (blog.video != null && blog.video.url != null) {%>
+                    <video width="320" height="240" class="content-video" controls autoplay loop>  
+                        <source src="<%= blog.video.url %>" type="video/mp4">    
+                    </video>  
+                <% }%>
+                </div>
+                <% visual = true; %>
+            <% } %>
             <h2><%= blog.headings[i] %></h2>
             <p><%= blog.paragraphs[i] %></p>
         <%} %>
 
+        <% console.log(visual); %>
+        
+        <% if (!visual){ %>
+            <div id="visual-content">
+                <% if (blog.image != null && blog.image.url != null) {%>
+                <img class="content-img" src="<%= blog.image.url %>" alt="image">
+                <% } %>
+            <% if (blog.video != null && blog.video.url != null) {%>
+                <video width="320" height="240" class="content-video" controls autoplay loop>  
+                    <source src="<%= blog.video.url %>" type="video/mp4">  
+                </video>  
+                <% } %>
+            </div>
+        <% } %>
     </div>
 
 </div>
+
+<footer class="mt-auto text-white-50">
+    <p>All Right Reserved &copy; 2023</p>
+  </footer>

@@ -11,3 +11,7 @@
     /* justify-content: center; */
     align-items: center;
 }
+
+.desc {
+    font-size: 10px;
+}

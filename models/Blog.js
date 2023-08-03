@@ -33,6 +33,10 @@ const blogSchema = new mongoose.Schema({
   author: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'
+  },
+  published_on: {
+    type: String,
+    default: null
   }
 });
 

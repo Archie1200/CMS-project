@@ -171,6 +171,7 @@ router.post("/upload", async (req, res) => {
     image: content1Id,
     video: content2Id,
     author: req.user._id,
+    published_on: new Date().toLocaleDateString("de-DE")
   });
 
   await blog

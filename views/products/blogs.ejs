@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" href="/css/logo.css" />
-    <link rel="stylesheet" href="/css/author-card.css">
+    <link rel="stylesheet" href="/css/blogs.css">
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -21,12 +21,12 @@
         <% if (blog.image) { %>
           <img class="card-img-top" src="<%= blog.image.url %>" alt="Card image cap" />
         <% } else { %>
-          <img class="card-img-top" src="..." alt="Card image cap" />
+          <img class="card-img-top" src="https://www.jasminz.com/image/cache/catalog/basel-demo/blog-1140x700.png" alt="Card image cap" />
         <% } %>
         
         <div class="card-body">
           <h5 class="card-title"><%= blog.title %></h5>
-          <p class="card-text">
+          <p class="card-text desc">
             <%= blog.description.substring(0, 150) + "..." %>
           </p>
           <a href="/blogs/<%=blog._id %>" class="btn btn-primary" id="viewBlog">View Blog</a>

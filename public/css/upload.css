@@ -94,3 +94,8 @@ button:hover {
   color: white;
   width: fit-content;
 }
+
+#loader {
+  display: none;
+  margin-top: 30vh;
+}

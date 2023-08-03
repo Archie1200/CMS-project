@@ -17,6 +17,7 @@ router.get('/:id', async (req, res, next) => {
     const {id} = req.params;
     const blog = await Blog.findOne({_id: `${id}`}).populate('author').populate('image').populate('video');
     console.log("blog printed");
+    // res.send(blog);
     res.render('products/showBlog.ejs', {blog: blog});
 })
 
