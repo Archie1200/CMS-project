@@ -1,19 +1,62 @@
 <% layout('./layout/boilerplate') -%>
+<style>
+    body {
+    background: linear-gradient(-45deg, #757f9a, #d7dde8, #ddd6f3, #faaca8);
+    background-size: 400% 400%;
+    animation: gradient 6s ease infinite;
+    height: 100vh;
+}
+.icon {
+  padding: 12px;
+  background: dodgerblue;
+  color: white;
+  min-width: 50px;
+  text-align: center;
+  border-radius: 5px;
+}
 
-<div class="border p-3 mx-auto w-50">
-    <h1>Login</h1>
-    <form action="/login" method="post">
-        <div class="mb-3">
-            <label class="form-label" for="username">Username</label>
-            <input class="form-control" type="text" name="username" id="username">
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+ 
+    50% {
+        background-position: 100% 50%;
+    }
+ 
+    100% {
+        background-position: 0% 50%;
+    }
+}
+    .border{
+        border-radius: 10px;
+        width: 28vw;
+        margin-top: 25px;
+        padding: 20px;
+        display: -ms-flexbox; /* IE10 */
+    }
+    .mb-5,.mb-4{
+        display: -ms-flexbox; /* IE10 */
+  display: flex;
+  width: 100%;
+  margin-bottom: 15px;
+    }
+
+</style>
+<div class="border mx-auto">
+    <h1>Login</h1><br>
+    <form action="/login" method="post" style="border-style: none;">
+        <div class="mb-5">
+            <i class="icon fa-solid fa-user"></i>
+            <input class="form-control" type="text" name="username" id="username" placeholder="Username">
         </div>
-        <div class="mb-3">
-            <label class="form-label" for="email">Email</label>
-            <input class="form-control" type="email" name="email" id="email">
+        <div class="mb-5">
+            <i class="icon fa-solid fa-envelope"></i>
+            <input class="form-control" type="email" name="email" id="email" placeholder="email">
         </div>
-        <div class="mb-3">
-            <label class="form-label" for="password">Password</label>
-            <input class="form-control" type="password" name="password" id="password">
+        <div class="mb-4">
+            <i class="icon fa-solid fa-lock"></i>
+            <input class="form-control" type="password" name="password" id="password" placeholder="Password">
         </div>
         <p>Don't have an account yet ? <a href="/register">Sign Up</a></p>
         <button type="submit" class="btn btn-sm btn-success">Login</button>
