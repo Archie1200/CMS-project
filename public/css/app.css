@@ -38,6 +38,7 @@ body {
     margin-left: 200px;
     padding: 1px 16px;
     height: 100%;
+    background-color: white;
   }
   .box{
     display: flex;
@@ -75,11 +76,16 @@ body {
     display: flex;
     justify-content: space-around;
     align-items: center;
+    font-size: 1.5rem;
+    line-height: 4rem;
+    font-weight: bolder;
+    font-style: italic;
   }
 
   .profile_img img {
-    width: 200px;
-    height: 200px;
+    margin-top: 20px;
+    width: 300px;
+    height: 300px;
     border: 2px solid black;
     border-radius: 100%;
   }
@@ -144,7 +150,12 @@ body {
 }
 
 
-.admin_content {
-  
+.slide{
+  margin-left: 120px;
+  font-size: 2rem;
+  font-weight: bolder;
+  transition: width 2s;
 }
-
+.slide:active{
+  width: 500px;
+}

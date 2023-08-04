@@ -13,11 +13,11 @@
 }
 .card{
     margin:10px;
-    box-shadow: rgba(17,12,46,0.3) 0px 48px 100px 0px;
+    box-shadow: rgba(17,12,46,0.12) 0px 48px 100px 0px;
 }
 .author-box img{
-    width: 10%;
-    height: 90%;
+    width: 15%;
+    height: 95%;
     border-radius: 100%;
     border: 1px solid lightblue;
     margin: 20px;
