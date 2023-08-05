@@ -3,6 +3,7 @@ const router = express.Router();
 const User = require("../models/User");
 const Content = require("../models/Content");
 const Blog = require("../models/Blog");
+const { error } = require("console");
 const cloudinary = require("cloudinary").v2;
 
 router.get("/", (req, res) => {
@@ -85,8 +86,17 @@ router.post("/changePassword", async (req, res) => {
 });
 
 //upload blog routes
-router.post("/upload", async (req, res) => {
-  console.log(req.body);
+router.post("/upload",  async (req, res, next) => {
+
+  if (req.user.fullname.firstname.length === 0) {
+    console.log("entered if block....sorryyyyyy");
+    req.flash('error', "Please update the Author name before uploading the blog!!");
+    res.redirect('/admin/upload');
+  }
+  else{
+    console.log("this is the user data after upload");
+  console.log(req.user);
+
   var blogImagePublicId = "";
   var blogVideoPublicId = "";
   var blogImageUrl = "";
@@ -102,7 +112,7 @@ router.post("/upload", async (req, res) => {
       await cloudinary.uploader
         .upload(blogImage.tempFilePath)
         .then(async (result) => {
-          console.log(result);
+          // console.log(result);
           content1 = new Content({
             public_id: result.public_id,
             url: result.secure_url,
@@ -135,7 +145,7 @@ router.post("/upload", async (req, res) => {
       await cloudinary.uploader
         .upload(blogVideo.tempFilePath, { resource_type: "video" })
         .then(async (result) => {
-          console.log(result.secure_url);
+          // console.log(result.secure_url);
 
           content2 = new Content({
             public_id: result.public_id,
@@ -185,6 +195,9 @@ router.post("/upload", async (req, res) => {
       console.log(e);
       res.redirect("/admin/upload");
     });
+  }
+
+  
 });
 
 module.exports = router;
