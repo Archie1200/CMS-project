@@ -1,0 +1,51 @@
+
+.navbar-nav{
+    margin-left: 72%;
+   }
+   .nav-link{
+    margin-left: 19px;
+    font-size: 1.1rem;
+   }
+   .navbar-brand{
+    font-size: 1.8rem;
+   }
+   #logo{
+    width: 30px;
+    height: 30px;
+   }
+.nav-link:hover{
+    cursor: pointer;
+    color: red;
+}
+.active:hover{
+    color: red;
+}
+.box{
+    height:100%;
+    width: 100%;
+    
+}
+.navbar{
+    background-image: linear-gradient(#ace0f9,#fff1eb);
+}
+.box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.box1,.box2{
+    width: 50%;
+    height: 85vh;
+    box-shadow: rgba(17,12,46,0.15) 0px 48px 100px 0px;
+    padding: 10px;
+}
+.box1{
+    text-align: center;
+    font-weight: bolder;
+    font-style: italic;
+    line-height: 3rem;
+    background-image: linear-gradient(#fff1eb,#ace0f9);
+}
+.box1 p{
+    font-size: 1.5rem;
+}

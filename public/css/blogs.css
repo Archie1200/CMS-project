@@ -14,6 +14,7 @@
 
 .card{
     margin:10px;
+
     box-shadow: rgba(17,12,46,0.3) 0px 48px 100px 0px;
     /* background-color: #C2DEDC; */
     border-radius: 10px !important;
@@ -42,6 +43,7 @@
 
 
 .author-box img{
+
     width: 3rem;
     height: 3rem;
     border-radius: 50%;
