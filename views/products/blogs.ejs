@@ -17,24 +17,29 @@
     <%- include('../partials/header') %> <%- include('../partials/router') %>
     <div class="box">
       <% blogs.forEach((blog) => { %>
-        <div class="card" style="width: 18rem">
+        <div class="card" style="width: 18rem ;background-color: #B9FFF8;">
           <div class="author-box"><img src="<%= blog.author.profilePictureUrl %>" alt="img not found"><div style="margin-top: auto;"><%= blog.author.fullname.firstname + " " + blog.author.fullname.lastname %> <br> <p style="font-size: 10px;">@<%= blog.author.username %></p></div></div>
-          <% if (blog.image) { %>
-            <img class="card-img-top" src="<%= blog.image.url %>" alt="Card image cap" />
-          <% } else { %>
-            <img class="card-img-top" src="https://www.jasminz.com/image/cache/catalog/basel-demo/blog-1140x700.png" alt="Card image cap" />
-          <% } %>
+          <div class="xyz">
+            <% if (blog.image) { %>
+              <img src="<%= blog.image.url %>" alt="Card image cap" />
+            <% } else { %>
+              <img src="https://www.jasminz.com/image/cache/catalog/basel-demo/blog-1140x700.png" alt="Card image cap" />
+            <% } %>
+          </div>
           
           <div class="card-body">
             <h5 class="card-title"><%= blog.title %></h5>
             <p class="card-text desc">
               <%= blog.description.substring(0, 150) + "..." %>
             </p>
-            <a href="/blogs/<%=blog._id %>" class="btn btn-primary" id="viewBlog">View Blog</a>
+            <a href="/blogs/<%=blog._id %>" class="btn btn-primary view" id="viewBlog">View Blog</a>
           </div>
         </div>
       <%}); %>
     </div>
+    <footer>
+      <p>All Right Reserved &copy; 2023</p>
+    </footer>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
