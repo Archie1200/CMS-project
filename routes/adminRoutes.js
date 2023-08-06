@@ -19,9 +19,9 @@ router.get("/update", (req, res) => {
 router.get("/upload", (req, res) => {
   res.render("products/upload.ejs");
 });
-router.get("/manage", (req, res) => {
-  res.render("products/manage.ejs");
-});
+// router.get("/manage", (req, res) => {
+//   res.render("products/manage.ejs");
+// });
 router.get("/managePassword", (req, res) => {
   res.render("products/managePassword.ejs");
 });
