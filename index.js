@@ -9,6 +9,7 @@ const cloudinary = require("cloudinary").v2;
 const dotenv = require("dotenv");
 const authRouter = require("./routes/authRoutes");
 const adminRouter = require('./routes/adminRoutes');
+const manageRouter = require('./routes/manageRoutes');
 const blogPageRouter = require('./routes/blogPageRoutes');
 const flash = require("connect-flash");
 const User = require("./models/User");
@@ -80,6 +81,9 @@ app.get("/", (req, res) => {
   res.render("products/index.ejs");
 });
 
+const methodOverride = require('method-override');
+app.use(methodOverride('_method'));
+
 //admin routes
 app.use('/admin', adminRouter);
 
@@ -88,6 +92,9 @@ app.use('/blogs', blogPageRouter);
 
 //authentication routes
 app.use(authRouter);
+
+//manage Routes
+app.use("/admin/manage",manageRouter);
 
 app.listen(PORT, (err) => {
   if (err) console.log("Error in server setup");
