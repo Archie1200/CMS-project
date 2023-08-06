@@ -87,6 +87,7 @@ router.post("/changePassword", async (req, res) => {
 
 //upload blog routes
 router.post("/upload",  async (req, res, next) => {
+  console.log(req.body);
 
   if (req.user.fullname.firstname.length === 0) {
     console.log("entered if block....sorryyyyyy");
@@ -96,6 +97,7 @@ router.post("/upload",  async (req, res, next) => {
   else{
     console.log("this is the user data after upload");
   console.log(req.user);
+  console.log(req.files);
 
   var blogImagePublicId = "";
   var blogVideoPublicId = "";
@@ -128,14 +130,11 @@ router.post("/upload",  async (req, res, next) => {
             });
         })
         .catch((err) => {
-          req.flash("Error in uploading Image!");
+          req.flash("error","Error in uploading Image!");
           res.redirect("/upload");
         });
     }
   }
-
-  
-  
 
 
   if (req.files != null && "blog-video" in req.files) {
