@@ -8,7 +8,7 @@ const cloudinary = require("cloudinary").v2;
 
 
 router.get('/', async (req, res, next) => {
-    const blogs = await Blog.find().populate('image').populate('author').select("-headings -paragraphs -video");
+    const blogs = await Blog.find({author : `${req.user._id}`}).populate('image').populate('author').select("-headings -paragraphs -video");
     console.log(blogs);
     res.render('products/manage.ejs', {blogs : blogs});
 });
