@@ -31,13 +31,13 @@ res.render("products/edit" , {blog})
 //update a blog
 router.patch("/:id" ,async(req,res)=>{
 
-    const {title,desc,headingInput,paragraphInput} = req.body;
+    const {title,desc,headingInput,paragraphInput,image,video} = req.body;
 
     const {id} = req.params;
 
-    await Blog.findByIdAndUpdate(id , {title,desc,headingInput,paragraphInput});
+    await Blog.findByIdAndUpdate(id , {title:title,description:desc,headings:headingInput,paragraphs:paragraphInput,image:image,video:video});
 
-    req.flash("update", "your product has been updated");
+    req.flash("update", "your blog has been updated");
     res.redirect('/blogs');
  })
 

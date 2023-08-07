@@ -14,8 +14,29 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" type="text/css" href="/css/front.css">
+    <link rel="stylesheet" href="/css/styles.css">
     <style>
-     
+     .carousel {
+      width: 500px;
+      height: 300px;
+      margin-left: 85px;
+    }
+
+    .carousel img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: 0;
+      transition: opacity 1s ease;
+      border-radius: 15px;
+    }
+
+    .carousel img.active {
+      opacity: 1;
+    }
     </style>
   </head>
   <body>
@@ -53,9 +74,20 @@
             href="/blogs"
             class="btn btn-sm btn-secondary font-weight-bold bg-black">View Blogs</a>
           <% } %>
+          <br><br>
+          <div class="carousel">
+            <img src="/images/img1.png" alt="Image 1" class="active">
+            <img src="/images/img2.png" alt="Image 2">
+            <img src="/images/img3.png" alt="Image 3">
+            <img src="/images/img4.png" alt="Image 4">
+            <img src="/images/img5.png" alt="Image 5">
+            <img src="/images/img6.png" alt="Image 6">
+            <img src="/images/img7.png" alt="Image 7">
+            <img src="/images/img8.png" alt="Image 8">
+          </div>
         </div>
        <div class="box2">
-          
+          <h2>Welcome to Archie Blogs</h2>
        </div>
         </div>
 
@@ -63,7 +95,27 @@
         <p>All Right Reserved &copy; 2023</p>
       </footer>
     </div>
+    <script>
+      const carouselImages = document.querySelectorAll(".carousel img");
 
+let index = 0;
+
+function showImage(index) {
+  for (let i = 0; i < carouselImages.length; i++) {
+    carouselImages[i].classList.remove("active");
+  }
+
+  carouselImages[index].classList.add("active");
+}
+
+function nextImage() {
+  index = (index + 1) % carouselImages.length;
+  showImage(index);
+}
+
+setInterval(nextImage, 2000);
+    </script>
+    <script src="/js/script.js"></script>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
