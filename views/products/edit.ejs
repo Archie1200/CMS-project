@@ -19,7 +19,7 @@
 
     <div class="admin_content">
       <%- include("../partials/flash") %>
-      <h2>Manage Content > Edit</h2>
+      <div style="padding: 10px; margin: 10px; color: rgb(149, 105, 245);"><span style="padding: 10px; border-radius: 20px; border: 2px solid blue;">Manage Content</span> > <span style="padding: 10px; border-radius: 20px; border: 2px solid blue;">Edit</span></div>
 
       <div class="text-center" id="loader">
         <div class="spinner-border" role="status"></div>
@@ -68,20 +68,23 @@
           value="<%=blog.description%>"
         />
 
-        <div id="bigContainer">
-          <div class="container">
-            <h2 class="contentNo">Content Box 1</h2>
-            <label for="headingInput"><h3>Heading</h3></label>
-            <input type="text" class="headingInput" name="headingInput"  value="<%=blog.headings%>" >
-            <label for="paragraphInput"><h3>Paragraph</h3></label>
-            <textarea
-              class="paragraphInput"
-              rows="4"
-              name="paragraphInput"
-            ><%=blog.paragraphs%></textarea>
-            <button type="button" class="deleteBox">Delete</button>
+
+        <% for(var i = 0; i < blog.headings.length; i++) { %>
+          <div id="bigContainer">
+            <div class="container">
+              <h2 class="contentNo">Content Box <%= i+1 %></h2>
+              <label for="headingInput"><h3>Heading</h3></label>
+              <input type="text" class="headingInput" name="headingInput"  value="<%=blog.headings[i]%>" >
+              <label for="paragraphInput"><h3>Paragraph</h3></label>
+              <textarea
+                class="paragraphInput"
+                rows="4"
+                name="paragraphInput"
+              ><%=blog.paragraphs[i]%></textarea>
+              <button type="button" class="deleteBox">Delete</button>
+            </div>
           </div>
-        </div>
+        <% } %>
         <div id="errorBox"></div>
         <button type="button" id="contentButton">Add Content</button>
         <button type="submit">Update Blog</button>

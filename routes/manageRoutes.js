@@ -24,21 +24,23 @@ router.get('/:id', async (req, res, next) => {
 router.get("/:id/edit" ,async(req, res)=>{
     const {id} = req.params;
     const blog = await Blog.findById(id);
-res.render("products/edit" , {blog})
+    res.render("products/edit" , {blog});
 });
 
 
 //update a blog
 router.patch("/:id" ,async(req,res)=>{
 
-    const {title,desc,headingInput,paragraphInput,image,video} = req.body;
+    const {title,desc,headingInput,paragraphInput} = req.body;
 
     const {id} = req.params;
 
     await Blog.findByIdAndUpdate(id , {title:title,description:desc,headings:headingInput,paragraphs:paragraphInput,image:image,video:video});
 
-    req.flash("update", "your blog has been updated");
-    res.redirect('/blogs');
+
+    req.flash("success", "your product has been updated");
+    res.redirect('/admin/manage');
+
  })
 
 //delete a blog
