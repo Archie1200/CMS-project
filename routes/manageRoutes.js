@@ -34,7 +34,7 @@ router.patch("/:id" ,async(req,res)=>{
     console.log(req.body);
     const {id} = req.params;
 
-    await Blog.findByIdAndUpdate(id , {title,desc,headingInput,paragraphInput});
+    await Blog.findByIdAndUpdate(id, {title: title, description: desc, headings: headingInput, paragraphs: paragraphInput});
 
     req.flash("success", "your product has been updated");
     res.redirect('/admin/manage');
