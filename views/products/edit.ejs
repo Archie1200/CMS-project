@@ -19,6 +19,7 @@
 
     <div class="admin_content">
       <%- include("../partials/flash") %>
+      <h2>Manage Content > Edit</h2>
 
       <div class="text-center" id="loader">
         <div class="spinner-border" role="status"></div>
@@ -64,7 +65,7 @@
           id="desc"
           placeholder="Add description for the blog"
           style="width: 70%; margin-bottom: 10px"
-          value="<%=blog.desc%>"
+          value="<%=blog.description%>"
         />
 
         <div id="bigContainer">
@@ -89,7 +90,7 @@
     <footer style="height: 20px"></footer>
 
     <script>
-      const profile_button = document.querySelector("#upload_link");
+      const profile_button = document.querySelector("#manage_link");
       profile_button.classList.add("active");
     </script>
     <script src="/js/uploadPage.js"></script>

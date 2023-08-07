@@ -1,11 +1,16 @@
 .blog-box{
-    margin-left: 300px;
-    margin-top: 20px;
-    width: 50%;
-    height: 250px;
+    /* margin-left: 300px; */
+    /* margin-top: 20px; */
+    margin: auto;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    text-align: center;
+    width: 60%;
+    height: fit-content;
     border: 3px solid grey;
     background-color: lavender;
     border-radius: 10px;
+    padding: 30px;
 }
 
 .section1{
@@ -13,7 +18,7 @@
     height: 20%;
     display: flex;
     margin-top: 5px;
-    margin-left: 5px;
+    /* margin-left: 5px; */
 }
 .section2{
     height: 100%;
@@ -23,6 +28,7 @@
 .a,.b{
     width: 50%;
     height: 100%;
+    /* text-align: center; */
 }
 .author-img{
     width: 40px;
@@ -30,19 +36,43 @@
     border-radius: 50%;
 }
 .a img{
-    height: 180px;
-    width: 210px;
-    margin-left: 50px;
+    height: 100px;
+    width: 100px;
+    /* margin-left: 50px; */
     border-radius: 10px;
 }
 .icon{
     margin-right: 10px;
 }
-.btn{
-    margin-left: 50px;
-}
+
 .btn a{
     color: white;
     text-decoration: none;
 }
 
+.admin-content {
+    text-align: center;
+}
+
+@media screen and (max-width: 900px) {
+    .section2 {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .a {
+        width: 100%;
+    }
+    .a img {
+        /* width: 100%; */
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .b {
+        width: 100%;
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+    }
+  }
+  

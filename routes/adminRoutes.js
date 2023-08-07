@@ -96,8 +96,8 @@ router.post("/upload",  async (req, res, next) => {
   }
   else{
     console.log("this is the user data after upload");
-  console.log(req.user);
-  console.log(req.files);
+  // console.log(req.user);
+  // console.log(req.files);
 
   var blogImagePublicId = "";
   var blogVideoPublicId = "";
