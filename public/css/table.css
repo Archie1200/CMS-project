@@ -10,7 +10,7 @@
     border: 3px solid grey;
     background-color: lavender;
     border-radius: 10px;
-    padding: 30px;
+    padding: 10px;
 }
 
 .section1{
@@ -36,15 +36,18 @@
     border-radius: 50%;
 }
 .a img{
-    height: 100px;
-    width: 100px;
+    height: 140px;
+    width: 140px;
     /* margin-left: 50px; */
     border-radius: 10px;
 }
 .icon{
     margin-right: 10px;
 }
-
+.btn{
+    height: 35px;
+    width: 110px;
+}
 .btn a{
     color: white;
     text-decoration: none;
