@@ -20,6 +20,7 @@
     include('../partials/admin-side-navbar') %> <%-
     include('../partials/router') %>
     <div class="admin_content">
+      <%- include("../partials/flash") %>
       <% blogs.forEach((blog) => { %>
       <div class="blog-box">
         <div class="section1">
@@ -62,7 +63,7 @@
             ><br /><br />
             <form
               action="/admin/manage/<%=blog._id%>?_method=DELETE"
-              method="POST"
+              method="POST" onsubmit="return check()"
             >
               <button type="submit" class="btn btn-sm btn-danger">
                 <i class="icon fa-solid fa-trash"></i>Delete
@@ -81,6 +82,11 @@
     <script>
       const profile_button = document.querySelector("#manage_link");
       profile_button.classList.add("active");
+
+      function check() {
+        return confirm("Do you want to delete this Blog?");
+      }
+
     </script>
     <script
       src="https://kit.fontawesome.com/e8b76c7cd7.js"

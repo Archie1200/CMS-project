@@ -13,6 +13,13 @@
     padding: 10px;
 }
 
+.blog-box:hover {
+    scale: 1.02;
+    transition: 0.2s;
+    border-color: rgb(167, 167, 245);
+    box-shadow: 10px 10px 5px lightblue;
+}
+
 .section1{
     width: 100%;
     height: 20%;
