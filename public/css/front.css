@@ -48,16 +48,22 @@
 .box2{
     height:86vh;
     background-image:linear-gradient(#fff1eb,#ace0f9);
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
+    text-align: center;
 }
 .b h3{
     font-size: 0.8rem;
 }
+.b1,.b2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+}
+.b1{
+    margin-bottom: 40px;
+}
 .b{
     padding: 15px;
-    margin-top: 20px;
     height: 100px;
     width: 100px;
     margin-left: 40px;
@@ -73,3 +79,39 @@
     cursor: pointer;
     color: red;
 }
+.box2 h1{
+    font-size: 4rem;
+    color: rgb(184, 98, 112);
+    text-decoration: solid;
+    font-weight: bolder;
+    font-style: italic;
+    animation: fast 2s;
+}
+.b{
+    animation: bubble 3s infinite linear;
+}
+  @keyframes fast {
+    0%{
+        transform: translateX(-800px);
+    }
+    50%{
+        transform: rotate3d(0,1,1,30deg);
+    }
+    75%{
+        transform: scale(1.5);
+    }
+    100%{
+        transform: translateX(0);
+    }
+  }
+  @keyframes bubble {
+    0%{
+        transform: scale(0.8);
+    }
+    50% {
+      transform: scale(1.4);
+    }
+    100%{
+        transform: scale(0.8);
+    }
+  }
