@@ -81,6 +81,11 @@ body {
     font-weight: bolder;
     font-style: italic;
   }
+  .profile_details{
+    border-radius: 20px;
+    padding: 10px;
+    box-shadow: rgba(17,12,46,0.1) 0px 48px 100px 0px;
+  }
 
   .profile_img img {
 

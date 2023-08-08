@@ -3,14 +3,14 @@
     /* margin-top: 20px; */
     margin: auto;
     margin-bottom: 10px;
-    margin-top: 10px;
+    margin-top: 20px;
     text-align: center;
-    width: 60%;
+    width: 58%;
     height: fit-content;
-    border: 3px solid grey;
-    background-color: lavender;
-    border-radius: 10px;
+    background-image: linear-gradient(#accbee,#e7f0fd);
+    border-radius: 30px;
     padding: 10px;
+    box-shadow: rgba(17,12,46,0.2) 0px 48px 100px 0px;
 }
 
 .blog-box:hover {
@@ -46,7 +46,17 @@
     height: 140px;
     width: 140px;
     /* margin-left: 50px; */
-    border-radius: 10px;
+    border-radius: 50%;
+}
+.a p{
+    font-style: italic;
+    font-weight: bold;
+    color: rgb(47, 143, 175);
+}
+.a h3{
+    margin-top: 5px;
+    font-style: italic;
+    font-weight: bolder;
 }
 .icon{
     margin-right: 10px;
