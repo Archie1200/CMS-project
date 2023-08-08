@@ -35,8 +35,6 @@ router.patch("/:id" ,async(req,res)=>{
 
     const {id} = req.params;
 
-    await Blog.findByIdAndUpdate(id , {title:title,description:desc,headings:headingInput,paragraphs:paragraphInput,image:image,video:video});
-
     await Blog.findByIdAndUpdate(id, {title: title, description: desc, headings: headingInput, paragraphs: paragraphInput});
 
     req.flash("success", "your product has been updated");
