@@ -30,14 +30,18 @@ router.get("/:id/edit" ,async(req, res)=>{
 
 //update a blog
 router.patch("/:id" ,async(req,res)=>{
+
     const {title,desc,headingInput,paragraphInput} = req.body;
-    console.log(req.body);
+
     const {id} = req.params;
+
+    await Blog.findByIdAndUpdate(id , {title:title,description:desc,headings:headingInput,paragraphs:paragraphInput,image:image,video:video});
 
     await Blog.findByIdAndUpdate(id, {title: title, description: desc, headings: headingInput, paragraphs: paragraphInput});
 
     req.flash("success", "your product has been updated");
     res.redirect('/admin/manage');
+
  })
 
 //delete a blog
