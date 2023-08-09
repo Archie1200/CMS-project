@@ -1,29 +1,29 @@
 *{
     margin: 0;
     padding: 0;
+    
 }
 
 .box {
-    background-color: #F7FFE5 !important;
     display: grid;
     grid-template-columns: 300px 300px 300px 300px;
     justify-content: center;
     column-gap: 20px;
     row-gap: 20px;
+    background-color: #e3e9ee;
 }
 
 .card{
     margin:10px;
-
     box-shadow: rgba(17,12,46,0.3) 0px 48px 100px 0px;
-    /* background-color: #C2DEDC; */
-    border-radius: 10px !important;
+    border-radius: 30px !important;
 }
 
 .card:hover {
     scale: 1.02;
     box-shadow: rgba(209, 206, 255, 0.489) 10px 10px 10px 10px;
     transition-duration: 0.2s;
+    cursor: pointer;
 }
 
 
@@ -86,4 +86,5 @@ footer p{
     /* background-color: aqua; */
     margin-bottom: 10px;
   }
+  
   
