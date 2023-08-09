@@ -14,6 +14,7 @@ router.get("/", (req, res) => {
 
 router.get("/update", (req, res) => {
   const user = req.user;
+  console.log(user);
   console.log(JSON.stringify(user));
   res.render("products/update_profile.ejs", { user });
 });
@@ -30,9 +31,10 @@ router.get("/managePassword", (req, res) => {
 router.post("/update", async (req, res) => {
   const updated_admin = req.body;
   const title = req.body.title;
+  console.log(req.body);
   
 
-  if (updated_admin.default) {
+  if (updated_admin.default === 'on') {
     try {
       const user = req.user;
       user.fullname.firstname = updated_admin.fname;

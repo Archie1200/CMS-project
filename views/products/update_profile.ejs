@@ -85,7 +85,7 @@ function checkform() {
     if (val.length == 0) {
         document.getElementById('profile_pic-error').innerText = "**Please add a profile pic before submit";
         check = false;
-        if (defProf.value) {
+        if (defProf.value == 'on') {
             document.getElementById('profile_pic-error').innerText = "";
             check = true;
         }
@@ -93,7 +93,7 @@ function checkform() {
     else if (!val.endsWith('.jpeg') && !val.endsWith('.png') && !val.endsWith('.jpg')) {
         document.getElementById('profile_pic-error').innerText = "**File type is not image (.png, .jpg, etc.)";
         check = false;
-        if (defProf.value) {
+        if (defProf.value == 'on') {
             document.getElementById('profile_pic-error').innerText = "";
             check = true;
         }
@@ -101,7 +101,7 @@ function checkform() {
     else if (profile_pic.files[0].size > 2000000) {
         document.getElementById('profile_pic-error').innerText = "**Image size larger than 2MB limit!!";
         check = false;
-        if (defProf.value) {
+        if (defProf.value == 'on') {
             document.getElementById('profile_pic-error').innerText = "";
             check = true;
         }
