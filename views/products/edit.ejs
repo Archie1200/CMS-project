@@ -39,12 +39,20 @@
             <%- include('../partials/drag-drop') %>
             <div class="error" id="img-error"></div>
             <!-- <button type="button" class="btn btn-primary btn-sm " id="imageButton">Upload Images</button> -->
+            <div>
+              <input style="padding-left: 0;" type="checkbox" name="defaultImage" id="defaultProfile">
+              <span for="default">Set default image</span>
+          </div>
           </div>
           <div class="box2">
             <label for="video-upload">Upload Video</label>
             <%- include('../partials/drag-drop') %>
             <div class="error" id="vid-error"></div>
             <!-- <button  type="button" class="btn btn-success btn-sm" id="videoButton">Upload Videos</button> -->
+            <div>
+              <input style="padding-left: 0;" type="checkbox" name="defaultVideo" id="defaultProfile">
+              <span for="default">Set default video</span>
+          </div><br>
           </div>
         </div>
 

@@ -37,8 +37,18 @@ router.patch("/:id", async (req, res) => {
   const { title, desc, headingInput, paragraphInput } = req.body;
 
   const { id } = req.params;
+  if (req.body.defaultImage) {
+    await Blog.findByIdAndUpdate(id, {
+      image: null,
+    });
+  }
+  if (req.body.defaultVideo) {
+    await Blog.findByIdAndUpdate(id, {
+      video: null,
+    });
+  }
 //   console.log(req.files);
-  if (req.files) {
+  if (!req.body.defaultImage && req.files) {
     var blog = await Blog.findOne({ _id: `${id}` });
     if ("blog-image" in req.files) {
       const blogImage = req.files["blog-image"];
@@ -84,7 +94,8 @@ router.patch("/:id", async (req, res) => {
           });
       }
     }
-    if ("blog-video" in req.files) {
+    
+    if (!req.body.defaultVideo && "blog-video" in req.files) {
       const blogVideo = req.files["blog-video"];
       if (blogVideo) {
         blogVideo.name = Date.now() + blogVideo.name;
