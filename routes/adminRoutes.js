@@ -27,36 +27,53 @@ router.get("/managePassword", (req, res) => {
   res.render("products/managePassword.ejs");
 });
 
-router.post("/update", (req, res) => {
+router.post("/update", async (req, res) => {
   const updated_admin = req.body;
-  const { profile_pic } = req.files;
-  console.log(profile_pic);
   const title = req.body.title;
-  profile_pic.name = Date.now() + profile_pic.name;
+  
 
-  cloudinary.uploader.upload(
-    profile_pic.tempFilePath,
-    async (error, result) => {
-      if (error) {
-        console.error(error);
-        return res.status(500).send("Error uploading image to Cloudinary");
-      }
-      console.log(result);
-
-      try {
-        const user = req.user;
-        user.fullname.firstname = updated_admin.fname;
-        user.fullname.lastname = updated_admin.lname;
-        user.mobile_no = updated_admin.mobile_no;
-        user.profilePictureUrl = result.secure_url;
-
-        // Await for the admin to be saved
-        req.user.save();
-      } catch (err) {
-        console.error(err);
-      }
+  if (updated_admin.default) {
+    try {
+      const user = req.user;
+      user.fullname.firstname = updated_admin.fname;
+      user.fullname.lastname = updated_admin.lname;
+      user.mobile_no = updated_admin.mobile_no;
+      user.profilePictureUrl = "https://i.stack.imgur.com/l60Hf.png";
+      // Await for the admin to be saved
+      await req.user.save();
+    } catch (err) {
+      console.error(err);
     }
-  );
+  }
+  else {
+    const { profile_pic } = req.files;
+  console.log(profile_pic);
+  
+  profile_pic.name = Date.now() + profile_pic.name;
+    cloudinary.uploader.upload(
+      profile_pic.tempFilePath,
+      async (error, result) => {
+        if (error) {
+          console.error(error);
+          return res.status(500).send("Error uploading image to Cloudinary");
+        }
+        console.log(result);
+  
+        try {
+          const user = req.user;
+          user.fullname.firstname = updated_admin.fname;
+          user.fullname.lastname = updated_admin.lname;
+          user.mobile_no = updated_admin.mobile_no;
+          user.profilePictureUrl = result.secure_url;
+  
+          // Await for the admin to be saved
+          req.user.save();
+        } catch (err) {
+          console.error(err);
+        }
+      }
+    );
+  }
   res.redirect("/");
 });
 

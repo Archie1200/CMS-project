@@ -166,3 +166,6 @@ body {
   width: 500px;
 }
 
+#defaultProfile {
+  width: fit-content;
+}
